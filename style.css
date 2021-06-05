@@ -13,8 +13,13 @@ body {
     margin: 2em auto;
     width: 90%;
     max-width: 40em;
-    min-height: 30em;
+    min-height: 35em;
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
+    border: 1px solid black;
+}
+
+.square {
+    border: 0.1em solid rgba(0, 0, 0, 0.815);
 }
