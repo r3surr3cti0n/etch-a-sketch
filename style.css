@@ -13,7 +13,7 @@ body {
 .container {
     margin: 0em auto;
     width: 90%;
-    max-width: 40em;
+    max-width: 960px;
     min-height: 35em;
     display: grid;
     grid-template-columns: repeat(16, 1fr);
