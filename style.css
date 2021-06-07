@@ -10,13 +10,23 @@ body {
     padding: 1em;
     display: grid;
     place-items: center;
+    gap: 2em;
+
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5em;
+    flex-wrap: wrap;
 }
 
 .container {
     margin: 0em auto;
     width: 90%;
-    max-width: 500px;
-    min-height: 35em;
+    max-width: 40em;
+    height: 35em;
     display: grid;
     border: 1px solid black;
 }
