@@ -34,6 +34,7 @@ function createDivs(div) {
 
 function setColor(e) {
 	e.target.classList.add("hovered");
+	e.target.style.background = randomColor();
 }
 
 function Clear() {
