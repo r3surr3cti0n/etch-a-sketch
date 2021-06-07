@@ -24,7 +24,7 @@ body {
 
 .container {
     margin: 0em auto;
-    width: 90%;
+    width: 100%;
     max-width: 40em;
     height: 35em;
     display: grid;
