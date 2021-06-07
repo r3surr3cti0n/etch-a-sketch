@@ -1,6 +1,7 @@
 // 16x16 div
 const input = document.querySelector(".divs");
 const container = document.querySelector(".container");
+const clearBtn = document.querySelector(".clear");
 let divs = input.value;
 window.addEventListener("DOMContentLoaded", () => {
 	if (divs <= 0) {
@@ -19,6 +20,8 @@ input.addEventListener("change", (e) => {
 		createDivs(divs);
 	}
 });
+
+clearBtn.addEventListener("click", Clear);
 
 function createDivs(div) {
 	container.style.gridTemplateColumns = `repeat(${div},1fr)`;
