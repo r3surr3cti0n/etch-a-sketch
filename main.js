@@ -1,19 +1,41 @@
 // 16x16 div
-const divs = 256;
+const input = document.querySelector(".divs");
+const container = document.querySelector(".container");
+let divs = input.value;
+window.addEventListener("DOMContentLoaded", () => {
+	if (divs <= 0) {
+		Clear();
+	} else {
+		createDivs(divs);
+	}
+});
 
-window.addEventListener("DOMContentLoaded", createDivs);
+input.addEventListener("change", (e) => {
+	divs = e.target.value;
+	Clear();
+	if (divs <= 0) {
+		Clear();
+	} else {
+		createDivs(divs);
+	}
+});
 
-function createDivs() {
-	const container = document.querySelector(".container");
+function createDivs(div) {
+	container.style.gridTemplateColumns = `repeat(${div},1fr)`;
+	container.style.gridTemplateRows = `repeat(${div},1fr)`;
 
-	for (let i = 0; i < divs; i++) {
-		let div = document.createElement("div");
-		div.setAttribute("class", "square");
-		container.append(div);
-		div.addEventListener("mouseover", setColor);
+	for (let i = 0; i < div * div; i++) {
+		let newDiv = document.createElement("div");
+		newDiv.setAttribute("class", "square");
+		container.append(newDiv);
+		newDiv.addEventListener("mouseover", setColor);
 	}
 }
 
 function setColor(e) {
-	e.target.style.background = "blue";
+	e.target.classList.add("hovered");
+}
+
+function Clear() {
+	container.innerHTML = "";
 }
