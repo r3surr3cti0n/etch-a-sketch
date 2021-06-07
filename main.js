@@ -5,40 +5,21 @@ const squares = Array.from(container.querySelectorAll(".square"));
 const clearBtn = document.querySelector(".clear");
 let divs = input.value;
 
+// Create divs when the DOM loaded.
 window.addEventListener("DOMContentLoaded", () => {
-	if (divs <= 0 || 50 < divs) {
-		setRows(1);
-		setColumns(1);
-		clearBtn.removeEventListener("click", Clear);
-	} else {
-		container.style.placeItems = "unset";
-		createDivs(divs);
-		// Add event listener if the value is valid
-		clearBtn.addEventListener("click", Clear);
-	}
+	createDivs(divs);
 });
 
+// Get input value and
 input.addEventListener("change", (e) => {
 	divs = e.target.value;
-	if (divs <= 0 || 50 < divs) {
-		setRows(1);
-		setColumns(1);
-		clearBtn.removeEventListener("click", Clear);
-	} else {
-		createDivs(divs);
-		// Add event listener if the value is valid
-		clearBtn.addEventListener("click", Clear);
-	}
+	createDivs(divs);
 });
 
-function setColumns(column) {
-	container.style.gridTemplateColumns = `repeat(${column},1fr)`;
-}
+// Clear container on clearBtn click.
+clearBtn.addEventListener("click", Clear);
 
-function setRows(row) {
-	container.style.gridTemplateRows = `repeat(${row},1fr)`;
-}
-
+// This function create the grid layout and appeand divs to it
 function createDivs(div) {
 	container.innerHTML = "";
 	setColumns(div);
@@ -52,11 +33,22 @@ function createDivs(div) {
 	}
 }
 
+// Create grid container
+function setColumns(column) {
+	container.style.gridTemplateColumns = `repeat(${column},1fr)`;
+}
+
+function setRows(row) {
+	container.style.gridTemplateRows = `repeat(${row},1fr)`;
+}
+
+// Set square color
 function setColor(e) {
 	e.target.classList.add("hovered");
 	e.target.style.background = randomColor();
 }
 
+// Clear container
 function Clear() {
 	createDivs(divs);
 }
