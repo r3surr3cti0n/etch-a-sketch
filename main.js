@@ -3,6 +3,7 @@ const input = document.querySelector(".divs");
 const container = document.querySelector(".container");
 const clearBtn = document.querySelector(".clear");
 let divs = input.value;
+
 window.addEventListener("DOMContentLoaded", () => {
 	if (divs <= 0) {
 		Clear();
@@ -21,9 +22,8 @@ input.addEventListener("change", (e) => {
 	}
 });
 
-clearBtn.addEventListener("click", Clear);
-
 function createDivs(div) {
+	container.innerHTML = "";
 	container.style.gridTemplateColumns = `repeat(${div},1fr)`;
 	container.style.gridTemplateRows = `repeat(${div},1fr)`;
 
@@ -41,8 +41,10 @@ function setColor(e) {
 }
 
 function Clear() {
-	container.innerHTML = "";
+	const squares = Array.from(container.querySelectorAll(".square"));
+	squares.forEach((item) => (item.style.background = "white"));
 }
+clearBtn.addEventListener("click", Clear);
 
 // Generate a random color in hexadecimal notation
 function randomColor() {
