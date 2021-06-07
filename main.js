@@ -1,12 +1,13 @@
 // 16x16 div
 const input = document.querySelector(".divs");
 const container = document.querySelector(".container");
+const squares = Array.from(container.querySelectorAll(".square"));
 const clearBtn = document.querySelector(".clear");
 let divs = input.value;
 
 window.addEventListener("DOMContentLoaded", () => {
-	if (divs <= 0) {
-		Clear();
+	if (divs <= 0 || 50 < divs) {
+		container.innerHTML = "Error.";
 	} else {
 		createDivs(divs);
 	}
@@ -14,18 +15,29 @@ window.addEventListener("DOMContentLoaded", () => {
 
 input.addEventListener("change", (e) => {
 	divs = e.target.value;
-	Clear();
-	if (divs <= 0) {
-		Clear();
+	if (divs <= 0 || 50 < divs) {
+		setRows(1);
+		setColumns(1);
+		container.innerHTML = "Error.";
+		clearBtn.removeEventListener("click", Clear);
 	} else {
 		createDivs(divs);
+		clearBtn.addEventListener("click", Clear);
 	}
 });
 
+function setColumns(column) {
+	container.style.gridTemplateColumns = `repeat(${column},1fr)`;
+}
+
+function setRows(row) {
+	container.style.gridTemplateRows = `repeat(${row},1fr)`;
+}
+
 function createDivs(div) {
 	container.innerHTML = "";
-	container.style.gridTemplateColumns = `repeat(${div},1fr)`;
-	container.style.gridTemplateRows = `repeat(${div},1fr)`;
+	setColumns(div);
+	setRows(div);
 
 	for (let i = 0; i < div * div; i++) {
 		let newDiv = document.createElement("div");
@@ -41,10 +53,8 @@ function setColor(e) {
 }
 
 function Clear() {
-	const squares = Array.from(container.querySelectorAll(".square"));
-	squares.forEach((item) => (item.style.background = "white"));
+	createDivs(divs);
 }
-clearBtn.addEventListener("click", Clear);
 
 // Generate a random color in hexadecimal notation
 function randomColor() {
