@@ -26,6 +26,5 @@ body {
 }
 
 .hovered {
-    background-color: black;
     transition: all .3s ease;
 }
