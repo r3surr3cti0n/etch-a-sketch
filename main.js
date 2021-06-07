@@ -7,9 +7,15 @@ let divs = input.value;
 
 window.addEventListener("DOMContentLoaded", () => {
 	if (divs <= 0 || 50 < divs) {
-		container.innerHTML = "Error.";
+		setRows(1);
+		setColumns(1);
+		showError();
+		clearBtn.removeEventListener("click", Clear);
 	} else {
+		container.style.placeItems = "unset";
 		createDivs(divs);
+		// Add event listener if the value is valid
+		clearBtn.addEventListener("click", Clear);
 	}
 });
 
@@ -18,13 +24,20 @@ input.addEventListener("change", (e) => {
 	if (divs <= 0 || 50 < divs) {
 		setRows(1);
 		setColumns(1);
-		container.innerHTML = "Error.";
+		showError();
 		clearBtn.removeEventListener("click", Clear);
 	} else {
+		container.style.placeItems = "unset";
 		createDivs(divs);
+		// Add event listener if the value is valid
 		clearBtn.addEventListener("click", Clear);
 	}
 });
+
+function showError() {
+	container.style.placeItems = "center";
+	container.innerHTML = "Error.";
+}
 
 function setColumns(column) {
 	container.style.gridTemplateColumns = `repeat(${column},1fr)`;
